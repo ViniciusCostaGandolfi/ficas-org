@@ -4,7 +4,7 @@ import { apiFetchRaw, forwardSetCookie } from "~/lib/api.server";
 
 import type { Route } from "./+types/logout";
 
-export async function action({ request }: Route.ActionArgs) {
+async function logout(request: Request) {
   let headers = new Headers();
 
   try {
@@ -18,4 +18,15 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   return redirect("/admin/login", { headers });
+}
+
+// Logout submitted by the admin layout's <Form method="post">.
+export async function action({ request }: Route.ActionArgs) {
+  return logout(request);
+}
+
+// Direct GET (e.g. typing /admin/logout in the address bar) must not 500:
+// a resource route with no loader throws "Unexpected Server Error" on GET.
+export async function loader({ request }: Route.LoaderArgs) {
+  return logout(request);
 }
