@@ -9,15 +9,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.method.ParameterValidationResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -49,6 +52,26 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = new LinkedHashMap<>();
         for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
             errors.putIfAbsent(violation.getPropertyPath().toString(), violation.getMessage());
+        }
+        String detail = errors.entrySet().stream()
+                .map(e -> e.getKey() + ": " + e.getValue())
+                .collect(Collectors.joining(", "));
+        return problem(HttpStatus.BAD_REQUEST, "Validation failed", detail, request, errors);
+    }
+
+    /**
+     * Spring 6.1 method validation (e.g. {@code @Valid} on container elements such as a JSON array
+     * request body) surfaces as this exception rather than {@link MethodArgumentNotValidException}.
+     */
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ProblemDetail handleMethodValidation(HandlerMethodValidationException ex, HttpServletRequest request) {
+        Map<String, String> errors = new LinkedHashMap<>();
+        for (ParameterValidationResult result : ex.getParameterValidationResults()) {
+            String name = result.getMethodParameter().getParameterName();
+            String key = (name == null || name.isBlank()) ? "request" : name;
+            for (MessageSourceResolvable resolvable : result.getResolvableErrors()) {
+                errors.putIfAbsent(key, resolvable.getDefaultMessage());
+            }
         }
         String detail = errors.entrySet().stream()
                 .map(e -> e.getKey() + ": " + e.getValue())

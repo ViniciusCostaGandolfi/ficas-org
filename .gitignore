@@ -13,6 +13,10 @@ target/
 .env.local
 .env.*.local
 !.env.example
+# Production env files (contain secrets) — never commit
+*-prod.env
+api-prod.env
+front-prod.env
 
 # IDE
 .idea/
