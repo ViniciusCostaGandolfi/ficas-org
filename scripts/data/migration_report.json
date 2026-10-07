@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-10-06T17:09:54.798003+00:00",
+  "dry_run": false,
+  "options": {
+    "limit": 20,
+    "skip_s3": true,
+    "skip_db": false,
+    "force_upload": false
+  },
+  "s3": {
+    "uploaded": 0,
+    "skipped": 0,
+    "failed": 0,
+    "failures": []
+  },
+  "db": {
+    "categories": {
+      "planned": 6,
+      "inserted": 6,
+      "skipped": 0
+    },
+    "tags": {
+      "planned": 428,
+      "inserted": 428,
+      "skipped": 0
+    },
+    "media_assets": {
+      "planned": 20,
+      "inserted": 20,
+      "skipped": 0
+    },
+    "pages": {
+      "planned": 20,
+      "inserted": 20,
+      "skipped": 0
+    },
+    "posts": {
+      "planned": 20,
+      "inserted": 20,
+      "skipped": 0
+    },
+    "post_tags": {
+      "planned": 149,
+      "inserted": 149,
+      "skipped": 0
+    },
+    "redirects": {
+      "planned": 496,
+      "inserted": 496,
+      "skipped": 0
+    }
+  }
+}

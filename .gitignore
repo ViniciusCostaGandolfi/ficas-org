@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+build/
+target/
+*.class
+
+# Env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Uploads (local media storage)
+apps/api/uploads/
+apps/api/storage/
+
+# Docker
+*.pid
+
+# Editor transcripts (local only)
+SESSION_TRANSCRIPT.md

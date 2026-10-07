@@ -1,0 +1,12 @@
+# Production profile: HTTPS required, Secure cookies.
+server:
+  forward-headers-strategy: framework
+
+app:
+  cookie:
+    secure: true
+
+logging:
+  level:
+    root: WARN
+    br.org.ficas: INFO

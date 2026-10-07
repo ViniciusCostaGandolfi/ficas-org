@@ -1,0 +1,228 @@
+{
+  "ok": 0,
+  "skip": 2288,
+  "fail": 55,
+  "bytes": 3483324791,
+  "failures": [
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/Ata-de-eleicao-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/rd-do-principal-representante.JPG",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cartao-cnpj-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cronograma-de-atividades-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/rg-do-principal-representante-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/planilha-orcamentaria-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cpf-do-principal-representante-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-federal-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-federal.JPG",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cpf-do-principal-representante.JPG",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/Ata-de-eleicao.JPG",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-estadual-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cndt-cnd-trabalhista-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/demonstrativo-financeiro2019-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-municipal-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cartao-cnpj-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/termo-de-consentimento-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/relatorio-de-atividades-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/comprovante-de-enderecodemonstrativo-financeiro2019-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/regularidade-fgts-CDM-–-Cooperacao-para-o-Desenvolvimento-e-Morada-Humana.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cronograma-de-atividades-Instituto-AMAZONIATEC.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/planilha-orcamentaria-Instituto-AMAZONIATEC.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/rg-do-principal-representante-Instituto-AMAZONIATEC-scaled.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cpf-do-principal-representante-Instituto-AMAZONIATEC.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/Ata-de-eleicao-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-federal-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-estadual-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/regularidade-fgts-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cnd-municipal-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/relatorio-de-atividades-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cndt-cnd-trabalhista-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/demonstrativo-financeiro2019-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/comprovante-de-enderecodemonstrativo-financeiro2019-Instituto-AMAZONIATEC.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/termo-de-consentimento-Instituto-AMAZONIATEC.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-FUNDACAO-EDUCACIONAL-SAO-JOSE.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/termo-de-consentimento-Instituto-AMAZONIATEC-1.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cartao-cnpj-FUNDACAO-EDUCACIONAL-SAO-JOSE.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-FUNDACAO-EDUCACIONAL-SAO-JOSE-1.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cronograma-de-atividades-FUNDACAO-EDUCACIONAL-SAO-JOSE.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cartao-cnpj-FUNDACAO-EDUCACIONAL-SAO-JOSE-1.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cronograma-de-atividades-FUNDACAO-EDUCACIONAL-SAO-JOSE-1.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/planilha-orcamentaria-FUNDACAO-EDUCACIONAL-SAO-JOSE.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-COMITE-PARA-DEMOCRATIZACAO-DA-INFORMATICA.PDF",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-PALHACOS-SEM-FRONTEIRAS-BRASIL-PSFB.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-Associacao-Desenrola.PDF",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-Associacao-Desenrola-1.PDF",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cronograma-de-atividades-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao.xlsx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao-scaled.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao-1.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/cartao-cnpj-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao-2-scaled.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://ficas.org.br/wp-content/uploads/ninja-forms/3/estatuto-ADESAN-–-Agencia-de-Desenvolvimento-Cultural-Ambiental-e-Socio-economico-de-Santos-Dumont-e-Micro-Regiao-1-scaled.jpg",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

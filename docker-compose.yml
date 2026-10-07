@@ -1,0 +1,120 @@
+
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: ficas-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ficas}
+      POSTGRES_USER: ${POSTGRES_USER:-ficas}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ficas}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      # postgres:18 keeps PGDATA in a major-version subdir
+      # (/var/lib/postgresql/18/docker); mount the PARENT so the entrypoint
+      # finds and persists it. Mounting .../data breaks startup.
+      - ficas_pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ficas} -d ${POSTGRES_DB:-ficas}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    container_name: ficas-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-ficas}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-ficasminio}
+    ports:
+      - "${MINIO_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - ficas_minio:/data
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # One-shot: creates the media bucket and keeps it private.
+  minio-init:
+    image: minio/minio:latest
+    container_name: ficas-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}" &&
+        (mc mb -p local/"$${AWS_BUCKET_NAME}" || true) &&
+        (mc anonymous set none local/"$${AWS_BUCKET_NAME}" || true) &&
+        echo "minio-init: bucket ready -> $${AWS_BUCKET_NAME}"
+    environment:
+      MC_CONFIG_DIR: /tmp/mc
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-ficas}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-ficasminio}
+      AWS_BUCKET_NAME: ${AWS_BUCKET_NAME:-ficas-media}
+    restart: "no"
+
+  api:
+    build:
+      context: ./apps/api
+    container_name: ficas-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-ficas}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-ficas}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-ficas}
+      APP_JWT_SECRET: ${APP_JWT_SECRET:-change-me-in-production-please-use-32b}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS:-http://localhost:5173}
+      APP_STORAGE_LOCAL_DIR: /app/storage
+      # Media storage: MinIO/S3 through the AWS SDK. In dev the MinIO root
+      # credentials double as the S3 access/secret key.
+      APP_STORAGE_PROVIDER: ${APP_STORAGE_PROVIDER:-s3}
+      AWS_ENABLED: ${AWS_ENABLED:-true}
+      AWS_ACCESS_KEY: ${MINIO_ROOT_USER:-ficas}
+      AWS_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-ficasminio}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      AWS_ENDPOINT: ${AWS_ENDPOINT:-http://minio:9000}
+      AWS_PATH_STYLE: ${AWS_PATH_STYLE:-true}
+      AWS_BUCKET_NAME: ${AWS_BUCKET_NAME:-ficas-media}
+    ports:
+      - "${API_PORT:-8080}:8080"
+    volumes:
+      - ficas_storage:/app/storage
+    profiles: ["full"]
+
+  web:
+    build:
+      context: ./apps/web
+      args:
+        # Baked into the client bundle — must be reachable from the browser.
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
+    container_name: ficas-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      # SSR (loaders/actions) talks to the API over the compose network.
+      API_BASE_URL: ${API_BASE_URL:-http://api:8080}
+      PORT: 3000
+      HOST: 0.0.0.0
+    ports:
+      - "${WEB_PORT:-5173}:3000"
+    profiles: ["full"]
+
+volumes:
+  ficas_pgdata:
+  ficas_minio:
+  ficas_storage:

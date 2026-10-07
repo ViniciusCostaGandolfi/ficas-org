@@ -1,0 +1,12 @@
+# Development profile: local PostgreSQL, non-secure cookie, verbose SQL optional.
+spring:
+  jpa:
+    show-sql: false
+
+app:
+  cookie:
+    secure: false
+
+logging:
+  level:
+    org.hibernate.SQL: WARN
