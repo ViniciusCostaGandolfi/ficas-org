@@ -5,7 +5,9 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci
+# Install ALL deps: the `react-router` CLI and `typescript` live in devDependencies.
+# --include=dev prevents a build-time NODE_ENV=production (injected by the host) from skipping them.
+RUN npm ci --include=dev
 
 COPY . .
 
