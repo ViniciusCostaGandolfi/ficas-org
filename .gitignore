@@ -40,3 +40,6 @@ apps/api/storage/
 
 # Editor transcripts (local only)
 SESSION_TRANSCRIPT.md
+
+# Migration artifacts (local only)
+scripts/data/cloud_media_map.json
