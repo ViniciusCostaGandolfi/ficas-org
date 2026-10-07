@@ -26,8 +26,8 @@ spring:
     locations: classpath:db/migration
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 12MB
+      max-file-size: 50MB
+      max-request-size: 60MB
   jackson:
     serialization:
       write-dates-as-timestamps: false
@@ -61,6 +61,9 @@ app:
     local-dir: ${APP_STORAGE_LOCAL_DIR:./storage}
     # local = filesystem (default, offline/tests); s3 = AWS S3 / MinIO via the AWS SDK
     provider: ${APP_STORAGE_PROVIDER:local}
+  media:
+    # Max upload size per file, in bytes (default 50 MB). Must stay <= servlet multipart max-file-size.
+    max-size-bytes: ${APP_MEDIA_MAX_SIZE_BYTES:52428800}
 
 # Object storage (AWS S3 / MinIO) for the media layer. Disabled by default so the API
 # boots with local-disk storage; enable with AWS_ENABLED=true and APP_STORAGE_PROVIDER=s3.

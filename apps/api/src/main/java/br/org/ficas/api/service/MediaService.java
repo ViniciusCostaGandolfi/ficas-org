@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class MediaService {
 
     private static final Logger log = LoggerFactory.getLogger(MediaService.class);
-    private static final long MAX_SIZE_BYTES = 10L * 1024 * 1024;
     private static final Set<String> ALLOWED_MIME_TYPES = Set.of(
             "image/png", "image/jpeg", "image/gif", "image/webp", "image/svg+xml", "application/pdf");
     private static final Map<String, String> EXTENSION_TO_MIME = Map.of(
@@ -47,10 +47,13 @@ public class MediaService {
 
     private final MediaRepository mediaRepository;
     private final StorageService storageService;
+    private final long maxSizeBytes;
 
-    public MediaService(MediaRepository mediaRepository, StorageService storageService) {
+    public MediaService(MediaRepository mediaRepository, StorageService storageService,
+            @Value("${app.media.max-size-bytes:52428800}") long maxSizeBytes) {
         this.mediaRepository = mediaRepository;
         this.storageService = storageService;
+        this.maxSizeBytes = maxSizeBytes;
     }
 
     @Transactional(readOnly = true)
@@ -66,8 +69,8 @@ public class MediaService {
         if (file == null || file.isEmpty()) {
             throw new BadRequestException("file must not be empty");
         }
-        if (file.getSize() > MAX_SIZE_BYTES) {
-            throw new BadRequestException("file exceeds the 10MB limit");
+        if (file.getSize() > maxSizeBytes) {
+            throw new BadRequestException("file exceeds the " + (maxSizeBytes / (1024 * 1024)) + "MB limit");
         }
         String originalFilename = sanitize(file.getOriginalFilename());
         String extension = extensionOf(originalFilename);
