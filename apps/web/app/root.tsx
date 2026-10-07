@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  useLocation,
   useRouteError,
 } from "react-router";
 
@@ -19,7 +20,7 @@ const APPLE_TOUCH_ICON = "/brand/logo-ficas.png";
 // Public site origin, used to build absolute URLs for social/WhatsApp previews.
 // Override at build time with VITE_SITE_URL (e.g. after a domain swap).
 const SITE_URL = (
-  (import.meta.env.VITE_SITE_URL as string | undefined) ??
+  (import.meta.env.VITE_SITE_URL as string | undefined) ||
   "https://ficas.vgandolfi.dev"
 ).replace(/\/+$/, "");
 const SITE_NAME = "FICAS";
@@ -42,42 +43,42 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export const meta: Route.MetaFunction = ({ location }) => {
-  const pageUrl = `${SITE_URL}${location.pathname}`;
-  return [
-    { title: SITE_NAME },
-    { name: "description", content: SITE_DESCRIPTION },
-    { tagName: "link", rel: "canonical", href: pageUrl },
-
-    // Open Graph (WhatsApp, Facebook, Telegram, LinkedIn…)
-    { property: "og:type", content: "website" },
-    { property: "og:site_name", content: SITE_NAME },
-    { property: "og:locale", content: "pt_BR" },
-    { property: "og:url", content: pageUrl },
-    { property: "og:title", content: SITE_NAME },
-    { property: "og:description", content: SITE_DESCRIPTION },
-    { property: "og:image", content: OG_IMAGE },
-    { property: "og:image:secure_url", content: OG_IMAGE },
-    { property: "og:image:type", content: "image/png" },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
-    { property: "og:image:alt", content: SITE_NAME },
-
-    // Twitter/X card
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: SITE_NAME },
-    { name: "twitter:description", content: SITE_DESCRIPTION },
-    { name: "twitter:image", content: OG_IMAGE },
-  ];
-};
+// Base meta (title/description). Rendered only for routes without their own
+// `meta`; pages override these with page-specific values.
+export const meta: Route.MetaFunction = () => [
+  { title: SITE_NAME },
+  { name: "description", content: SITE_DESCRIPTION },
+];
 
 export function Layout({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  const pageUrl = `${SITE_URL}${pathname}`;
+
   return (
     <html lang="pt-BR" data-theme="ficas">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0061b7" />
+
+        {/* Social/WhatsApp preview tags. Emitted in the document head on EVERY
+            page because a leaf route's `meta` replaces the root's `meta` (they
+            don't merge per-tag). og:title/og:description are intentionally
+            omitted so crawlers fall back to each page's <title>/<description>. */}
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:secure_url" content={OG_IMAGE} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={SITE_NAME} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={OG_IMAGE} />
+
         <Meta />
         <Links />
       </head>
