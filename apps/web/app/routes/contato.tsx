@@ -26,13 +26,14 @@ import {
 import type { Route } from "./+types/contato";
 import { usePublicLayoutData } from "./public-layout";
 
+const CONTATO_DESCRIPTION =
+  "Fale com o FICAS: telefone, WhatsApp, e-mail, endereço e redes sociais.";
+
 export const meta: Route.MetaFunction = () => [
   { title: "Contato — FICAS" },
-  {
-    name: "description",
-    content:
-      "Fale com o FICAS: telefone, WhatsApp, e-mail, endereço e redes sociais.",
-  },
+  { name: "description", content: CONTATO_DESCRIPTION },
+  { property: "og:title", content: "Contato — FICAS" },
+  { property: "og:description", content: CONTATO_DESCRIPTION },
 ];
 
 /** Readable handle/slug extracted from a social profile URL. */

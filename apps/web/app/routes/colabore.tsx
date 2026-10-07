@@ -23,13 +23,14 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { page };
 }
 
+const COLABORE_DESCRIPTION =
+  "Apoie as iniciativas da FICAS e colabore com a transformação de pessoas e organizações.";
+
 export const meta: Route.MetaFunction = () => [
   { title: "Colabore — FICAS" },
-  {
-    name: "description",
-    content:
-      "Apoie as iniciativas da FICAS e colabore com a transformação de pessoas e organizações.",
-  },
+  { name: "description", content: COLABORE_DESCRIPTION },
+  { property: "og:title", content: "Colabore — FICAS" },
+  { property: "og:description", content: COLABORE_DESCRIPTION },
 ];
 
 function CopyKeyButton({ value }: { value: string }) {

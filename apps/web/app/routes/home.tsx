@@ -322,16 +322,21 @@ const PARCEIROS = [
   { src: "/home/parceiro-6.jpg", alt: "Logotipo de parceiro (placeholder)" },
 ];
 
+const HOME_DESCRIPTION =
+  "Organização sem fins lucrativos que fortalece a sociedade civil com programas, assessorias e ações gratuitas de formação e articulação desde 1997.";
+
 export const meta: Route.MetaFunction = () => [
   {
     title:
       "FICAS — Compartilhando conhecimentos, transformando pessoas e organizações",
   },
+  { name: "description", content: HOME_DESCRIPTION },
   {
-    name: "description",
-    content:
-      "Organização sem fins lucrativos que fortalece a sociedade civil com programas, assessorias e ações gratuitas de formação e articulação desde 1997.",
+    // Shorter than <title> so WhatsApp doesn't truncate the preview headline.
+    property: "og:title",
+    content: "FICAS — Compartilhando conhecimentos, transformando pessoas",
   },
+  { property: "og:description", content: HOME_DESCRIPTION },
 ];
 
 /* ------------------------------------------------------------------ */

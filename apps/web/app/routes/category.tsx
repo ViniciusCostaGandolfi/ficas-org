@@ -53,14 +53,14 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 export const meta: Route.MetaFunction = ({ data: loaderData, params }) => {
   const name = loaderData?.category?.name ?? params.slug;
+  const description =
+    loaderData?.category?.description ||
+    `Publicações da categoria ${name} na FICAS.`;
   return [
     { title: `${name} — FICAS` },
-    {
-      name: "description",
-      content:
-        loaderData?.category?.description ||
-        `Publicações da categoria ${name} na FICAS.`,
-    },
+    { name: "description", content: description },
+    { property: "og:title", content: `${name} — FICAS` },
+    { property: "og:description", content: description },
   ];
 };
 

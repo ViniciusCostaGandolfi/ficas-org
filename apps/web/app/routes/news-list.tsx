@@ -55,12 +55,13 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { posts, categories, q, category };
 }
 
+const NEWS_LIST_DESCRIPTION = "Últimas notícias, projetos e ações da FICAS.";
+
 export const meta: Route.MetaFunction = () => [
   { title: "Notícias — FICAS" },
-  {
-    name: "description",
-    content: "Últimas notícias, projetos e ações da FICAS.",
-  },
+  { name: "description", content: NEWS_LIST_DESCRIPTION },
+  { property: "og:title", content: "Notícias — FICAS" },
+  { property: "og:description", content: NEWS_LIST_DESCRIPTION },
 ];
 
 export default function NewsList({ loaderData }: Route.ComponentProps) {
