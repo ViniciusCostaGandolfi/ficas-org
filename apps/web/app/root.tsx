@@ -16,8 +16,19 @@ import "./tailwind.css";
 const FAVICON = "/favicon.ico";
 const APPLE_TOUCH_ICON = "/brand/logo-ficas.png";
 
+// Public site origin, used to build absolute URLs for social/WhatsApp previews.
+// Override at build time with VITE_SITE_URL (e.g. after a domain swap).
+const SITE_URL = (
+  (import.meta.env.VITE_SITE_URL as string | undefined) ??
+  "https://ficas.vgandolfi.dev"
+).replace(/\/+$/, "");
+const SITE_NAME = "FICAS";
+const SITE_DESCRIPTION =
+  "Compartilhando conhecimentos, transformando pessoas e organizações.";
+const OG_IMAGE = `${SITE_URL}/brand/og-image.png`;
+
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: resolveMediaUrl(FAVICON) ?? FAVICON, type: "image/svg+xml" },
+  { rel: "icon", href: resolveMediaUrl(FAVICON) ?? FAVICON, type: "image/x-icon" },
   { rel: "apple-touch-icon", href: resolveMediaUrl(APPLE_TOUCH_ICON) ?? APPLE_TOUCH_ICON },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -31,14 +42,34 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export const meta: Route.MetaFunction = () => [
-  { title: "FICAS" },
-  {
-    name: "description",
-    content:
-      "FICAS — Compartilhando conhecimentos, transformando pessoas e organizações.",
-  },
-];
+export const meta: Route.MetaFunction = ({ location }) => {
+  const pageUrl = `${SITE_URL}${location.pathname}`;
+  return [
+    { title: SITE_NAME },
+    { name: "description", content: SITE_DESCRIPTION },
+    { tagName: "link", rel: "canonical", href: pageUrl },
+
+    // Open Graph (WhatsApp, Facebook, Telegram, LinkedIn…)
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: SITE_NAME },
+    { property: "og:locale", content: "pt_BR" },
+    { property: "og:url", content: pageUrl },
+    { property: "og:title", content: SITE_NAME },
+    { property: "og:description", content: SITE_DESCRIPTION },
+    { property: "og:image", content: OG_IMAGE },
+    { property: "og:image:secure_url", content: OG_IMAGE },
+    { property: "og:image:type", content: "image/png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:alt", content: SITE_NAME },
+
+    // Twitter/X card
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: SITE_NAME },
+    { name: "twitter:description", content: SITE_DESCRIPTION },
+    { name: "twitter:image", content: OG_IMAGE },
+  ];
+};
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
